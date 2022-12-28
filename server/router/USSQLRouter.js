@@ -1,0 +1,1 @@
+// Decided to move everything to the server for easier readability. With limited controllers/routes, a router is not necessary.

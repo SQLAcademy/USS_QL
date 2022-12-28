@@ -1,26 +1,30 @@
 import React, { useState } from 'react'
-import GameContainer from './GameContainer.jsx'
 import TextContainer from './TextContainer.jsx'
+import GameContainer from './GameContainer.jsx'
+import { promptOptions } from '../components/PromptDisplay.jsx'
+import '../stylesheets/MainContainer.css'
 
 const MainContainer = () => {
-  // GameContainer
-  const [EnemyShipLocations, setEnemyShipLocations] = useState(['A1', 'B1', 'C1']);
-  const [PlayerMisses, setPlayerMisses] = useState([]);
-  const [PlayerHits, setPlayerHits] = useState([]);
-  // TextContainer
-  const [PromptDisplay, setPromptDisplay] = useState('test PrompDisplay');
-  const [UserInput, setUserInput] = useState('test UserInput');
-
-  // Functionality
-  // check syntax
+  const [enemyShipLocations, setEnemyShipLocations] = useState(['A1', 'B1', 'C1']);
+  const [playerMisses, setPlayerMisses] = useState([]);
+  const [playerHits, setPlayerHits] = useState([]);
+  const [promptDisplayText, setPromptDisplayText] = useState(promptOptions.newGame);
 
   return (
-    <div>
-      <GameContainer
-        EnemyShipLocations = {EnemyShipLocations} 
-        setEnemyShipLocations = {setEnemyShipLocations}
+    <div className="mainContainer">
+      <TextContainer
+        promptDisplayText={promptDisplayText}
+        setPromptDisplayText={setPromptDisplayText}
+        enemyShipLocations={enemyShipLocations}
+        playerMisses={playerMisses}
+        setPlayerMisses={setPlayerMisses}
+        playerHits={playerHits}
+        setPlayerHits={setPlayerHits}
       />
-      <TextContainer />
+      <GameContainer
+        enemyShipLocations={enemyShipLocations}
+        setEnemyShipLocations={setEnemyShipLocations}
+      />
     </div>
   )
 }

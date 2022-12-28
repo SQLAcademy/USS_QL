@@ -1,0 +1,13 @@
+.promptDisplay {
+  padding: 10px;
+  border: 1px solid black;
+  flex: 1;
+  display: flex;
+}
+
+.promptDisplayScreen {
+  padding: 10px;
+  border: 1px solid black;
+  flex: 1;
+  display: flex;
+}
