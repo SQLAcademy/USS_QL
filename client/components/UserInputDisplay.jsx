@@ -7,11 +7,11 @@ const UserInputDisplay = ({ setPromptDisplayText, enemyShipLocations, playerMiss
 
   function processTurn() {
 
-    const userInputTextBox = document.querySelector('#userInputBox');
-    userInputTextBox.value = '';
+    const userInputText = document.querySelector('#userInputBox').value;
+    document.querySelector('#userInputBox').value = '';
 
     // Check Syntax
-    const responseObj = checkSyntax(userInputTextBox.value);
+    const responseObj = checkSyntax(userInputText);
     if (!responseObj.goodSyntax) {
       // Syntax failure
       setPromptDisplayText(promptOptions.syntaxFail);
@@ -38,7 +38,11 @@ const UserInputDisplay = ({ setPromptDisplayText, enemyShipLocations, playerMiss
         if (enemyShipLocations.includes(responseObj.coordinates) && !playerHits.includes(responseObj.coordinates)) {
           // Player hit the ship
           setPromptDisplayText(promptOptions.updateSuccess);
-          setPlayerHits([...playerHits, responseObj.coordinates]);
+          const newPlayerHits = [...playerHits, responseObj]
+          setPlayerHits(newPlayerHits)
+          if (newPlayerHits.length === enemyShipLocations.length) {
+            //GAME OVER STUFF//
+          }
         } else {
           // Player set coordinates on empty ocean
           setPromptDisplayText(promptOptions.updateFail);
@@ -63,8 +67,8 @@ const UserInputDisplay = ({ setPromptDisplayText, enemyShipLocations, playerMiss
         queryString = `SELECT contents FROM intel WHERE latitude = '${latitudeInput}' AND longitude = ${longitudeInput}`
         break;
       case 'update':
-        const latitudeInput = query.slice(56, 57);
-        const longitudeInput = query.slice(75, 76);
+        latitudeInput = query.slice(56, 57);
+        longitudeInput = query.slice(75, 76);
         queryString = `UPDATE intel SET contents = 'missile' WHERE latitude = '${latitudeInput}' AND longitude = ${longitudeInput}`
         break;
       default:

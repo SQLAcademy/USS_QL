@@ -8,9 +8,9 @@ const promptOptions = {
     Submit a query request to the database using a SELECT command to find out if the ship is at the location specified.`,
   promptSelect: 'Submit a query request to the database using a SELECT command to find out if the ship is at the location specified.',
   selectSuccess: 'Your selection was a success - there is a ship at that location! You are now able to fire a missile by issuing the correct UPDATE command.',
-  selectFail: `Your selection did not find an enemy location. Please SELECT another location.`,
+  selectFail: `Your selection did not find an enemy location or you have already tried this location. Please SELECT another location.`,
   updateSuccess: 'Your missile hit the target! You can now issue a new SELECT command',
-  updateFail: 'You missed - how in the world did you miss when you just SELECTED the right spot, you dummy? You must now issue a new SELECT command.',
+  updateFail: 'You missed, dummy..  You must now issue a new SELECT command.',
   syntaxFail: 'Your command was not deployed! The lieutenant responded saying he was not able to understand the command due to poor syntax. You must now issue a new SELECT command'
 };
 
