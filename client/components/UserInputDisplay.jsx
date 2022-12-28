@@ -38,10 +38,11 @@ const UserInputDisplay = ({ setPromptDisplayText, enemyShipLocations, playerMiss
         if (enemyShipLocations.includes(responseObj.coordinates) && !playerHits.includes(responseObj.coordinates)) {
           // Player hit the ship
           setPromptDisplayText(promptOptions.updateSuccess);
-          const newPlayerHits = [...playerHits, responseObj]
+          const newPlayerHits = [...playerHits, responseObj.coordinates]
           setPlayerHits(newPlayerHits)
           if (newPlayerHits.length === enemyShipLocations.length) {
-            //GAME OVER STUFF//
+            // Game Over
+            setPromptDisplayText(promptOptions.gameOver)
           }
         } else {
           // Player set coordinates on empty ocean
@@ -67,9 +68,9 @@ const UserInputDisplay = ({ setPromptDisplayText, enemyShipLocations, playerMiss
         queryString = `SELECT contents FROM intel WHERE latitude = '${latitudeInput}' AND longitude = ${longitudeInput}`
         break;
       case 'update':
-        latitudeInput = query.slice(56, 57);
-        longitudeInput = query.slice(75, 76);
-        queryString = `UPDATE intel SET contents = 'missile' WHERE latitude = '${latitudeInput}' AND longitude = ${longitudeInput}`
+        latitudeInput = query.slice(63, 64);
+        longitudeInput = query.slice(82, 83);
+        queryString = `UPDATE intel SET contents = 'cruise missile' WHERE latitude = '${latitudeInput}' AND longitude = ${longitudeInput}`
         break;
       default:
         break;

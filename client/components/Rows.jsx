@@ -2,23 +2,19 @@ import React from 'react'
 import Box from "./Box.jsx"
 
 const Rows = props => {
-  const {id, enemyShipLocations, setEnemyShipLocations, playerMisses, setPlayerMisses, playerHits, setPlayerHits} = props;
+  const { id, playerMisses, playerHits } = props;
   const boxArr = [];
   for (let i = 1; i <= 5; i++) {
-  boxArr.push(<Box
-    
-    id = {`${id}${i}`}
-    enemyShipLocations = {enemyShipLocations} 
-    setEnemyShipLocations = {setEnemyShipLocations}
-    playerMisses = {playerMisses}
-    setPlayerMisses = {setPlayerMisses}
-    playerHits = {playerHits}
-    setPlayerHits = {setPlayerHits}
-  />)
+    boxArr.push(<Box
+      key={`${id}${i}`}
+      id={`${id}${i}`}
+      playerMisses={playerMisses}
+      playerHits={playerHits}
+    />)
   }
 
   return (
-    <div>
+    <div className="gameContainerRow">
       {boxArr}
     </div>
   )

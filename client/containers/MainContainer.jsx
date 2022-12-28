@@ -22,8 +22,8 @@ const MainContainer = () => {
         setPlayerHits={setPlayerHits}
       />
       <GameContainer
-        enemyShipLocations={enemyShipLocations}
-        setEnemyShipLocations={setEnemyShipLocations}
+        playerHits={playerHits}
+        playerMisses={playerMisses}
       />
     </div>
   )

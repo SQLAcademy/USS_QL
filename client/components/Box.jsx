@@ -1,32 +1,24 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 const Box = props => {
-  const {id, enemyShipLocations, setEnemyShipLocations, playerMisses, setPlayerMisses, playerHits, setPlayerHits} = props;
-  let hitStatus = 'default';
-  if(playerMisses.includes(id)) hitStatus += ' miss'
-  if(playerHits.includes(id)) hitStatus += ' hit'
+  const { id, playerMisses, playerHits } = props;
+  const [hitStatus, setHitStatus] = useState('');
+  useEffect(() => {
+    for (let i = 0; i < playerMisses.length; i++) {
+      if (playerMisses[i] === id) setHitStatus(' miss')
+    };
+    for (let i = 0; i < playerHits.length; i++) {
+      if (playerHits[i] === id) {
+        setHitStatus(' hit')
+      }
+    }
+  }, [playerHits, playerMisses])
+
   return (
-    <button className = {hitStatus}>
+    <div className={`box${hitStatus}`}>
       {`${id}`}
-    </button>
+    </div>
   )
 }
 
 export default Box
-
-
-// default
-
-// player miss
-// if (playerMisses.includes(id)) {
-  
-// }
-
-// // player hit
-// if (playerHits.includes(id)) {
-//   style = {{
-
-//     background-color : 'Red',
-
-//   }}
-// }

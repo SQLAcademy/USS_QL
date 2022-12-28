@@ -1,0 +1,30 @@
+.gameContainer {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.gameContainerRow {
+  display: flex;
+}
+
+.box {
+  width: 150px;
+  height: 150px;
+  border: 0.5px solid rgba(255, 255, 255, 0.3);
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: green
+}
+
+.hit {
+  background-color: red;
+}
+
+.miss {
+  background-color: grey;
+}
