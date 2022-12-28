@@ -1,16 +1,94 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { promptOptions } from './PromptDisplay';
+import '../stylesheets/UserInputDisplay.css'
 
-const UserInputDisplay = () => {
+const UserInputDisplay = ({ setPromptDisplayText, enemyShipLocations, playerMisses, setPlayerMisses, playerHits, setPlayerHits }) => {
+  const [turnType, setTurnType] = useState('select');
+
+  function processTurn() {
+
+    const userInputTextBox = document.querySelector('#userInputBox');
+    userInputTextBox.value = '';
+
+    // Check Syntax
+    const responseObj = checkSyntax(userInputTextBox.value);
+    if (!responseObj.goodSyntax) {
+      // Syntax failure
+      setPromptDisplayText(promptOptions.syntaxFail);
+      setTurnType('select');
+      return;
+    }
+
+    // If user input passes the syntax check
+    switch (turnType) {
+      case 'select':
+        // Check if the enemyShipLocations array includes the coordinates
+        if (enemyShipLocations.includes(responseObj.coordinates) && !playerHits.includes(responseObj.coordinates)) {
+          // Player found the enemy ship
+          setPromptDisplayText(promptOptions.selectSuccess);
+          setTurnType('update');
+        } else {
+          // Player selected empty ocean
+          setPromptDisplayText(promptOptions.selectFail);
+          setPlayerMisses([...playerMisses, responseObj.coordinates]);
+        }
+        break;
+
+      case 'update':
+        if (enemyShipLocations.includes(responseObj.coordinates) && !playerHits.includes(responseObj.coordinates)) {
+          // Player hit the ship
+          setPromptDisplayText(promptOptions.updateSuccess);
+          setPlayerHits([...playerHits, responseObj.coordinates]);
+        } else {
+          // Player set coordinates on empty ocean
+          setPromptDisplayText(promptOptions.updateFail);
+        }
+        setTurnType('select');
+        break;
+      default:
+        break;
+    }
+  }
+
+  function checkSyntax(query) {
+    let queryString = '';
+    let latitudeInput = '';
+    let longitudeInput = '';
+
+    // Pull the latitude and longitude from the query and set the queryString to compare the applicable syntax
+    switch (turnType) {
+      case 'select':
+        latitudeInput = query.slice(45, 46);
+        longitudeInput = query.slice(64, 65);
+        queryString = `SELECT contents FROM intel WHERE latitude = '${latitudeInput}' AND longitude = ${longitudeInput}`
+        break;
+      case 'update':
+        const latitudeInput = query.slice(56, 57);
+        const longitudeInput = query.slice(75, 76);
+        queryString = `UPDATE intel SET contents = 'missile' WHERE latitude = '${latitudeInput}' AND longitude = ${longitudeInput}`
+        break;
+      default:
+        break;
+    }
+
+    // Create a response object with the coordinates and the results of the syntax check
+    const responseObj = {}
+    responseObj.coordinates = latitudeInput.concat(longitudeInput)
+    if (query === queryString) responseObj.goodSyntax = true
+    else responseObj.goodSyntax = false;
+    return responseObj;
+  }
+
   return (
-    <div>UserInput</div>
+    <div className="userInput">
+      <div className="userInputScreen">
+        <textarea id="userInputBox" />
+      </div>
+      <div className="buttonsContainer">
+        <button id='issueCommandButton' onClick={processTurn}>Issue Command</button>
+      </div>
+    </div>
   )
 }
-
-// Functions
-// check if player SQL query is correct
-// check syntax function,
-  // check if values exist in EnemyShipLocations state
-  // conditional add to PlayerMiss or PlayerHit 
-    //if Playerhit then update EnemyShipLocations state
 
 export default UserInputDisplay

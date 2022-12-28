@@ -1,0 +1,27 @@
+.userInput {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+}
+
+.userInputScreen {
+  padding: 10px;
+  border: 1px solid black;
+  display: flex;
+  flex: 1;
+}
+
+#userInputBox {
+  border: none;
+  outline: none;
+  width: 100%;
+}
+
+.buttonsContainer {
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
