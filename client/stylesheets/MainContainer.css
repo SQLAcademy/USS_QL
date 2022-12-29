@@ -1,6 +1,10 @@
 .mainContainer {
-  border: 1px solid black;
+  font-family: "quantico";
+  border: 3px solid black;
   display: grid;
   grid-template-columns: 1fr 1.5fr;
   min-height: 90vh;
+  background-color: beige;
+  border-radius: 10px;
+  padding: 0px 30px;
 }
