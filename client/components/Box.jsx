@@ -16,7 +16,6 @@ const Box = props => {
 
   return (
     <div className={`box${hitStatus}`}>
-      {`${id}`}
     </div>
   )
 }

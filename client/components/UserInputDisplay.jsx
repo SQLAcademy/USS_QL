@@ -7,6 +7,8 @@ const UserInputDisplay = ({ setPromptDisplayText, enemyShipLocations, playerMiss
 
   function processTurn() {
 
+    console.log('Enemy Ship Locations Arr ', enemyShipLocations)
+
     const userInputText = document.querySelector('#userInputBox').value;
     document.querySelector('#userInputBox').value = '';
 
