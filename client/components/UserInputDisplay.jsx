@@ -92,7 +92,12 @@ const UserInputDisplay = ({ setPromptDisplayText, enemyShipLocations, playerMiss
         <textarea id="userInputBox" />
       </div>
       <div className="buttonsContainer">
-        <button id='issueCommandButton' onClick={processTurn}>Issue Command</button>
+        <div className="newGameButtonContainer">
+          <button id='newGameButton'>New<br />Game</button>
+        </div>
+        <div className="issueCommandButtonContainer">
+          <button id='issueCommandButton' onClick={processTurn}>Issue<br />Command</button>
+        </div>
       </div>
     </div>
   )
