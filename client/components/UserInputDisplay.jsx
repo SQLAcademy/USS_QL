@@ -67,12 +67,12 @@ const UserInputDisplay = ({ setPromptDisplayText, enemyShipLocations, playerMiss
       case 'select':
         latitudeInput = query.slice(45, 46);
         longitudeInput = query.slice(64, 65);
-        queryString = `SELECT contents FROM intel WHERE latitude = '${latitudeInput}' AND longitude = ${longitudeInput}`
+        queryString = `SELECT contents FROM intel WHERE latitude = '${latitudeInput}' AND longitude = ${longitudeInput};`
         break;
       case 'update':
         latitudeInput = query.slice(63, 64);
         longitudeInput = query.slice(82, 83);
-        queryString = `UPDATE intel SET contents = 'cruise missile' WHERE latitude = '${latitudeInput}' AND longitude = ${longitudeInput}`
+        queryString = `UPDATE intel SET contents = 'cruise missile' WHERE latitude = '${latitudeInput}' AND longitude = ${longitudeInput};`
         break;
       default:
         break;

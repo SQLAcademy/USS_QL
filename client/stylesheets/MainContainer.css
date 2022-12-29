@@ -3,7 +3,7 @@
   border: 3px solid black;
   display: grid;
   grid-template-columns: 1fr 1.5fr;
-  min-height: 90vh;
+  min-height: 85vh;
   background-color: beige;
   border-radius: 10px;
   padding: 0px 30px;
