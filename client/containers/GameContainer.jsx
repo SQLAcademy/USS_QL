@@ -18,6 +18,14 @@ const GameContainer = props => {
   }
   return (
     <div className="gameContainer">
+      <div className="numbersLatitude">
+        <div className="numberLatitude"></div>
+        <div className="numberLatitude">1</div>
+        <div className="numberLatitude">2</div>
+        <div className="numberLatitude">3</div>
+        <div className="numberLatitude">4</div>
+        <div className="numberLatitude">5</div>
+      </div>
       {rowsArr}
     </div>
   )

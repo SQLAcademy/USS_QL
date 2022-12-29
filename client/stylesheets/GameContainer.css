@@ -1,5 +1,4 @@
 .gameContainer {
-  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -7,13 +6,15 @@
 }
 
 .gameContainerRow {
-  display: flex;
+  display: grid;
+  grid-template-columns: min-content repeat(5, 1fr);
 }
 
 .box {
-  width: 150px;
-  height: 150px;
-  border: 0.5px solid rgba(255, 255, 255, 0.3);
+  box-sizing: border-box;
+  width: 130px;
+  height: 130px;
+  border: 0.5px solid green;
   background-color: black;
   display: flex;
   align-items: center;
@@ -27,4 +28,21 @@
 
 .miss {
   background-color: grey;
+}
+
+.letterLongitude {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3em
+}
+
+.numbersLatitude {
+  display: grid;
+  grid-template-columns: 3em repeat(5, 130px);
+  margin-right: 0;
+}
+
+.numberLatitude {
+  text-align: center;
 }

@@ -1,7 +1,6 @@
 .promptDisplay {
   padding: 10px;
   border: 1px solid black;
-  flex: 1;
   display: flex;
   font-size: 1.5rem;
 }
@@ -9,7 +8,13 @@
 .promptDisplayScreen {
   padding: 10px;
   border: 1px solid black;
-  flex: 1;
   display: flex;
+  flex-direction: column;
   font-size: 1.5rem;
+  overflow: auto;
+}
+
+p {
+  padding: 0;
+  margin-bottom: 5px;
 }
