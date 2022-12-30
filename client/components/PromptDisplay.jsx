@@ -5,7 +5,7 @@ import '../stylesheets/PromptDisplay.css'
 // Struggled to break apart
 const promptOptions = {
   newGame: {
-    part1: `Greetings Admiral. Intelligence reports the fearead pirate vessel, Hard Learning, has been spotted nearby.`,
+    part1: `Greetings Admiral. Intelligence reports the fearead pirate vessel, \n \n \n \n Hard Learning, has been spotted nearby.`,
     part2: `Issue firing solutions using SQL. Submit a query request to the database using a SELECT command to find out if the ship is at the location specified. The eyes of the world are upon you, godspeed! Our full stack engineers assure us that a miss or successful hit will be visible on your sonar display.`,
     part3: `Remember, the database has a table called 'intel' with three fields; 'latitude'(a letter), 'longitude'(a number), and 'contents'.`,
   },
@@ -13,7 +13,7 @@ const promptOptions = {
     part1: 'Submit a query request to the database using a SELECT command to find out if the ship is at the location specified.'
   },
   selectSuccess: {
-    part1: 'Good effect! There is a ship at that location! You are now able to fire a missile by issuing the correct UPDATE command.'
+    part1: 'Reconnaissance confirms there is a ship at that location! You are clear to fire a missile by issuing the correct UPDATE command.'
   },
   selectFail: {
     part1: `No joy - empty ocean. Please SELECT another location.`
@@ -30,6 +30,13 @@ const promptOptions = {
   gameOver: {
     part1: `Mission success! Hard Learning has been neutralized! History will remember your valiant deeds.`,
     part2: `This War is far from over. Select New Game and engage in more exilerating & educational combat.`,
+  },
+  insertOption: {
+    part1: `Washington is growing impatient. POTUS has approved use of the High Energy Linear Payload (HELP). This new ordinacne will bring peace to an entire row of Ocean.`,
+    part2: `Issue an INSERT command into the 'intel' table. Pass 'HELP' into the 'contents' field and pass the latitude you wish to strike into the 'latitude' field.`,
+  },
+  insertSuccess: {
+    part1: `The bright flash reflects off your Aviators. You notice your Bridge Officer had his back to the explosion... very cool.`
   }
 };
 

@@ -4,6 +4,8 @@ import '../stylesheets/UserInputDisplay.css'
 
 const UserInputDisplay = ({ setPromptDisplayText, enemyShipLocations, playerMisses, setPlayerMisses, playerHits, setPlayerHits, startNewGame }) => {
   const [turnType, setTurnType] = useState('select');
+  const [bombAvailable, setBombAvailable] = useState(0);
+  const [bombAttempted, setBombAttempted] = useState(false);
 
   function processTurn() {
 
@@ -24,6 +26,7 @@ const UserInputDisplay = ({ setPromptDisplayText, enemyShipLocations, playerMiss
     // If user input passes the syntax check
     switch (turnType) {
       case 'select':
+        setBombAvailable(bombAvailable + 1);
         // Check if the enemyShipLocations array includes the coordinates
         if (enemyShipLocations.includes(responseObj.coordinates) && !playerHits.includes(responseObj.coordinates)) {
           // Player found the enemy ship
@@ -31,11 +34,16 @@ const UserInputDisplay = ({ setPromptDisplayText, enemyShipLocations, playerMiss
           setTurnType('update');
         } else {
           // Player selected empty ocean
-          setPromptDisplayText(promptOptions.selectFail);
           setPlayerMisses([...playerMisses, responseObj.coordinates]);
+          if (bombAvailable != 3 || bombAttempted) {
+            setPromptDisplayText(promptOptions.selectFail);
+          } else {
+            setPromptDisplayText(promptOptions.insertOption);
+            setTurnType('insert');
+            setBombAttempted(true);
+          }
         }
         break;
-
       case 'update':
         if (enemyShipLocations.includes(responseObj.coordinates) && !playerHits.includes(responseObj.coordinates)) {
           // Player hit the ship
@@ -51,6 +59,23 @@ const UserInputDisplay = ({ setPromptDisplayText, enemyShipLocations, playerMiss
           setPromptDisplayText(promptOptions.updateFail);
         }
         setTurnType('select');
+        break;
+      case 'insert':
+        const newPlayerHits = [...playerHits];
+        const newPlayerMisses = [...playerMisses]
+        for (let i = 1; i <= 5; i++) {
+          const coord = responseObj.coordinates[0].concat(i);
+          if (enemyShipLocations.includes(coord)) {
+            if (!playerHits.includes(coord)) {
+              newPlayerHits.push(coord)
+            }
+          }
+          else newPlayerMisses.push(coord);
+        }
+        setPlayerHits(newPlayerHits);
+        setPlayerMisses(newPlayerMisses);
+        setTurnType('select');
+        setPromptDisplayText(promptOptions.insertSuccess);
         break;
       default:
         break;
@@ -73,6 +98,11 @@ const UserInputDisplay = ({ setPromptDisplayText, enemyShipLocations, playerMiss
         latitudeInput = query.slice(63, 64);
         longitudeInput = query.slice(82, 83);
         queryString = `UPDATE intel SET contents = 'cruise missile' WHERE latitude = '${latitudeInput}' AND longitude = ${longitudeInput};`
+        break;
+      case 'insert':
+        latitudeInput = query.slice(56, 57);
+        console.log('insert lat is ', latitudeInput);
+        queryString = `INSERT INTO intel (contents, latitude) VALUES ('HELP', '${latitudeInput}');`
         break;
       default:
         break;
