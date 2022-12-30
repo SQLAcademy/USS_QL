@@ -25,10 +25,11 @@ const promptOptions = {
     part1: `No joy. Issue a new SELECT command.`,
   },
   syntaxFail: {
-    part1: 'Your command was not deployed! The Birdge Officer says your syntax is not regulation. Issue a new SELECT command'
+    part1: 'Your command was not deployed! The Birdge Officer says your syntax is not regulation. Issue a new SELECT command',
   },
   gameOver: {
-    part1: `Mission success! Hard Learning has been neutralized! History will remember your valiant deeds.`
+    part1: `Mission success! Hard Learning has been neutralized! History will remember your valiant deeds.`,
+    part2: `This War is far from over. Select New Game and engage in more exilerating & educational combat.`,
   }
 };
 

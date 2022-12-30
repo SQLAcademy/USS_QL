@@ -3,7 +3,7 @@ import PromptDisplay from '../components/PromptDisplay.jsx'
 import UserInputDisplay from '../components/UserInputDisplay.jsx'
 import '../stylesheets/TextContainer.css'
 
-const TextContainer = ({ enemyShipLocations, promptDisplayText, setPromptDisplayText, playerMisses, setPlayerMisses, playerHits, setPlayerHits }) => {
+const TextContainer = ({ enemyShipLocations, promptDisplayText, setPromptDisplayText, playerMisses, setPlayerMisses, playerHits, setPlayerHits, startNewGame }) => {
   return (
     <div className="textContainer">
       <PromptDisplay
@@ -16,6 +16,7 @@ const TextContainer = ({ enemyShipLocations, promptDisplayText, setPromptDisplay
         setPlayerMisses={setPlayerMisses}
         playerHits={playerHits}
         setPlayerHits={setPlayerHits}
+        startNewGame={startNewGame}
       />
     </div>
 

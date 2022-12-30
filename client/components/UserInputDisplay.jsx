@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { promptOptions } from './PromptDisplay';
 import '../stylesheets/UserInputDisplay.css'
 
-const UserInputDisplay = ({ setPromptDisplayText, enemyShipLocations, playerMisses, setPlayerMisses, playerHits, setPlayerHits }) => {
+const UserInputDisplay = ({ setPromptDisplayText, enemyShipLocations, playerMisses, setPlayerMisses, playerHits, setPlayerHits, startNewGame }) => {
   const [turnType, setTurnType] = useState('select');
 
   function processTurn() {
@@ -93,7 +93,10 @@ const UserInputDisplay = ({ setPromptDisplayText, enemyShipLocations, playerMiss
       </div>
       <div className="buttonsContainer">
         <div className="newGameButtonContainer">
-          <button id='newGameButton'>New<br />Game</button>
+          <button id='newGameButton' onClick={() => {
+            setTurnType('select');
+            startNewGame();
+          }}>New<br />Game</button>
         </div>
         <div className="issueCommandButtonContainer">
           <button id='issueCommandButton' onClick={processTurn}>Issue<br />Command</button>
