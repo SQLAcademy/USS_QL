@@ -32,13 +32,22 @@ const MainContainer = () => {
     return enemyShipCoords;
   }
 
+  //Typewriter effect function for displaying the promptDisplayText
+  function typewriterEffect(prompt, currentDigit = 0) {
+    setPromptDisplayText(prompt.slice(0, currentDigit))
+    if (currentDigit < prompt.length - 1) {
+      setTimeout(() => {
+        typewriterEffect(prompt, currentDigit + 1)
+      }, 25);
+    }
+  }
 
   // Begins new game, resets state
   function startNewGame() {
     setEnemyShipLocations(generateRandomShip());
     setPlayerHits([]);
     setPlayerMisses([]);
-    setPromptDisplayText(promptOptions.newGame);
+    typewriterEffect(promptOptions.newGame);
 
     //grabs all boxes with class of 'miss' and 'hit' and removes the classes so that it doesn't render the background img
     const misses = document.querySelectorAll('.miss')
@@ -55,7 +64,7 @@ const MainContainer = () => {
   const [enemyShipLocations, setEnemyShipLocations] = useState(generateRandomShip());
   const [playerMisses, setPlayerMisses] = useState([]);
   const [playerHits, setPlayerHits] = useState([]);
-  const [promptDisplayText, setPromptDisplayText] = useState(promptOptions.newGame);
+  const [promptDisplayText, setPromptDisplayText] = useState(promptOptions.initialPrompt);
 
   return (
     <div className="mainContainer">
@@ -68,6 +77,7 @@ const MainContainer = () => {
         playerHits={playerHits}
         setPlayerHits={setPlayerHits}
         startNewGame={startNewGame}
+        typewriterEffect={typewriterEffect}
       />
       <GameContainer
         playerHits={playerHits}

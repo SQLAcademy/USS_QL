@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { promptOptions } from './PromptDisplay';
 import '../stylesheets/UserInputDisplay.css'
 
-const UserInputDisplay = ({ setPromptDisplayText, enemyShipLocations, playerMisses, setPlayerMisses, playerHits, setPlayerHits, startNewGame }) => {
+const UserInputDisplay = ({ setPromptDisplayText, enemyShipLocations, playerMisses, setPlayerMisses, playerHits, setPlayerHits, startNewGame, typewriterEffect }) => {
   const [turnType, setTurnType] = useState('select');
   const [bombAvailable, setBombAvailable] = useState(0);
   const [bombAttempted, setBombAttempted] = useState(false);
@@ -18,7 +18,7 @@ const UserInputDisplay = ({ setPromptDisplayText, enemyShipLocations, playerMiss
     const responseObj = checkSyntax(userInputText);
     if (!responseObj.goodSyntax) {
       // Syntax failure
-      setPromptDisplayText(promptOptions.syntaxFail);
+      typewriterEffect(promptOptions.syntaxFail);
       setTurnType('select');
       return;
     }
@@ -30,15 +30,15 @@ const UserInputDisplay = ({ setPromptDisplayText, enemyShipLocations, playerMiss
         // Check if the enemyShipLocations array includes the coordinates
         if (enemyShipLocations.includes(responseObj.coordinates) && !playerHits.includes(responseObj.coordinates)) {
           // Player found the enemy ship
-          setPromptDisplayText(promptOptions.selectSuccess);
+          typewriterEffect(promptOptions.selectSuccess);
           setTurnType('update');
         } else {
           // Player selected empty ocean
           setPlayerMisses([...playerMisses, responseObj.coordinates]);
           if (bombAvailable != 3 || bombAttempted) {
-            setPromptDisplayText(promptOptions.selectFail);
+            typewriterEffect(promptOptions.selectFail);
           } else {
-            setPromptDisplayText(promptOptions.insertOption);
+            typewriterEffect(promptOptions.insertOption);
             setTurnType('insert');
             setBombAttempted(true);
           }
@@ -47,16 +47,16 @@ const UserInputDisplay = ({ setPromptDisplayText, enemyShipLocations, playerMiss
       case 'update':
         if (enemyShipLocations.includes(responseObj.coordinates) && !playerHits.includes(responseObj.coordinates)) {
           // Player hit the ship
-          setPromptDisplayText(promptOptions.updateSuccess);
+          typewriterEffect(promptOptions.updateSuccess);
           const newPlayerHits = [...playerHits, responseObj.coordinates]
           setPlayerHits(newPlayerHits)
           if (newPlayerHits.length === enemyShipLocations.length) {
             // Game Over
-            setPromptDisplayText(promptOptions.gameOver)
+            typewriterEffect(promptOptions.gameOver)
           }
         } else {
           // Player set coordinates on empty ocean
-          setPromptDisplayText(promptOptions.updateFail);
+          typewriterEffect(promptOptions.updateFail);
         }
         setTurnType('select');
         break;
@@ -75,7 +75,7 @@ const UserInputDisplay = ({ setPromptDisplayText, enemyShipLocations, playerMiss
         setPlayerHits(newPlayerHits);
         setPlayerMisses(newPlayerMisses);
         setTurnType('select');
-        setPromptDisplayText(promptOptions.insertSuccess);
+        typewriterEffect(promptOptions.insertSuccess);
         break;
       default:
         break;
