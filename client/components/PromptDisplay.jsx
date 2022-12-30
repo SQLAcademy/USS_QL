@@ -10,7 +10,7 @@ const promptOptions = {
   selectFail: `No joy - empty ocean. Please SELECT another location.`,
   updateSuccess: `Your missile hit the target! You can now issue a new SELECT command`,
   updateFail: `No joy. Issue a new SELECT command.`,
-  syntaxFail: 'Your command was not deployed! The Birdge Officer says your syntax is not regulation. Issue a new SELECT command',
+  syntaxFail: 'Your command was not deployed! The Birdge Officer says your syntax is not regulation. Issue a new SELECT command.',
   gameOver: `Mission success! Hard Learning has been neutralized! History will remember your valiant deeds.\n This War is far from over. Select New Game and engage in more exilerating & educational combat.`,
   insertOption: `Washington is growing impatient. POTUS has approved use of the High Energy Linear Payload (HELP). This new ordinance will bring peace to an entire row of Ocean. \n Issue an INSERT command into the 'intel' table. Pass 'HELP' into the 'contents' field and pass the latitude you wish to strike into the 'latitude' field.`,
   insertSuccess: `The bright flash reflects off your Aviators. You notice your Bridge Officer had his back to the explosion... very cool.`
