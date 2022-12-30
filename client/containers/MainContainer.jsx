@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import TextContainer from './TextContainer.jsx'
 import GameContainer from './GameContainer.jsx'
 import { promptOptions } from '../components/PromptDisplay.jsx'
+import morseSound from '../assets/morse.mp3'
 import '../stylesheets/MainContainer.css'
 
 const MainContainer = () => {
@@ -34,11 +35,25 @@ const MainContainer = () => {
 
   //Typewriter effect function for displaying the promptDisplayText
   function typewriterEffect(prompt, currentDigit = 0) {
+    console.log('prompt.slice(0, 9): ', prompt.slice(0, 9));
+    if (currentDigit === 0 && prompt.slice(0, 9) === 'Greetings') {
+      const newAudio = document.createElement('AUDIO');
+      newAudio.src = morseSound;
+      newAudio.id = 'morseSound';
+      newAudio.style.visible = 'hidden';
+      document.querySelector('#root').appendChild(newAudio)
+      document.querySelector('#morseSound').currentTime = 3;
+      document.querySelector('#morseSound').volume = 0.2;
+      document.querySelector('#morseSound').play();
+    }
     setPromptDisplayText(prompt.slice(0, currentDigit))
-    if (currentDigit < prompt.length - 1) {
+    if (currentDigit < prompt.length) {
       setTimeout(() => {
         typewriterEffect(prompt, currentDigit + 1)
       }, 25);
+    } else {
+      const audio = document.querySelector('#morseSound')
+      audio.remove();
     }
   }
 
