@@ -12,7 +12,7 @@ USS QL is an interactive learning platform for users to practice SQL queries to 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="./client/assets/readme/gameIntro.gif">
   <source media="(prefers-color-scheme: light)" srcset="./client/assets/readme/gameIntro.gif">
-  <img alt="Game Intro Gif" src="./client/assets/readme/gameIntro.gif.png" width="250px">
+  <img alt="Game Intro Gif" src="./client/assets/readme/gameIntro.gif.png" width="800px">
 </picture>
 
 # Installation
