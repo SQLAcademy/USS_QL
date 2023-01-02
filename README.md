@@ -9,7 +9,11 @@
 
 USS QL is an interactive learning platform for users to practice SQL queries to reinforce SQL syntax in an engaging and entertaining format.
 
-<video src="./client/assets/readme/gameIntro.mkv" controls="controls" style="max-width: 730px;"></video>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./client/assets/readme/gameIntro.gif">
+  <source media="(prefers-color-scheme: light)" srcset="./client/assets/readme/gameIntro.gif">
+  <img alt="Game Intro Gif" src="./client/assets/readme/gameIntro.gif.png" width="250px">
+</picture>
 
 # Installation
 
@@ -40,11 +44,7 @@ $ npm run dev
 1. Click "New Game" button.
 2. Make SELECT query to make board selection
 3. If enemy ship is at location, make UPDATE query to hit ship
-
-    <video src="./client/assets/readme/updateSuccess.mkv" controls="controls" style="max-width: 730px;"></video>
 4. If player has 'HELP' munitions (3 Turns), make INSERT query to deploy
-
-    <video src="./client/assets/readme/insert.mkv" controls="controls" style="max-width: 730px;"></video>
 
 **NOTE:** Each input made by user will be checked for the correct format/syntax
 
