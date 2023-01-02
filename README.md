@@ -12,7 +12,7 @@ USS QL is an interactive learning platform for users to practice SQL queries to 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="./client/assets/readme/gameIntro.gif">
   <source media="(prefers-color-scheme: light)" srcset="./client/assets/readme/gameIntro.gif">
-  <img alt="Game Intro Gif" src="./client/assets/readme/gameIntro.gif.png" width="800px">
+  <img alt="Game Intro Gif" src="./client/assets/readme/gameIntro.gif" width="800px">
 </picture>
 
 # Installation
@@ -44,7 +44,20 @@ $ npm run dev
 1. Click "New Game" button.
 2. Make SELECT query to make board selection
 3. If enemy ship is at location, make UPDATE query to hit ship
+
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="./client/assets/readme/updateSuccess.gif">
+      <source media="(prefers-color-scheme: light)" srcset="./client/assets/readme/updateSuccess.gif">
+      <img alt="Select Update Gif" src="./client/assets/readme/updateSuccess.gif" width="800px">
+    </picture>
+
 4. If player has 'HELP' munitions (3 Turns), make INSERT query to deploy
+
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="./client/assets/readme/insert.gif">
+      <source media="(prefers-color-scheme: light)" srcset="./client/assets/readme/insert.gif">
+      <img alt="Select Update Gif" src="./client/assets/readme/insert.gif" width="800px">
+    </picture>
 
 **NOTE:** Each input made by user will be checked for the correct format/syntax
 
