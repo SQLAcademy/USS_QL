@@ -26,6 +26,7 @@ const UserInputDisplay = ({ setPromptDisplayText, enemyShipLocations, playerMiss
     // If user input passes the syntax check
     switch (turnType) {
       case 'select':
+        //increment bombAvailable after each player turn
         setBombAvailable(bombAvailable + 1);
         // Check if the enemyShipLocations array includes the coordinates
         if (enemyShipLocations.includes(responseObj.coordinates) && !playerHits.includes(responseObj.coordinates)) {
@@ -35,6 +36,8 @@ const UserInputDisplay = ({ setPromptDisplayText, enemyShipLocations, playerMiss
         } else {
           // Player selected empty ocean
           setPlayerMisses([...playerMisses, responseObj.coordinates]);
+          // conditions for when a player DOES NOT have access to the HELP bomb
+          // 3 turns have not occured || HELP bomb has been used previously
           if (bombAvailable != 3 || bombAttempted) {
             typewriterEffect(promptOptions.selectFail);
           } else {

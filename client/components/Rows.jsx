@@ -9,6 +9,7 @@ const Rows = props => {
     boxArr.push(
       <Box
         key={`${id}${i}`}
+        //id = A and i = 1
         id={`${id}${i}`}
         playerMisses={playerMisses}
         playerHits={playerHits}

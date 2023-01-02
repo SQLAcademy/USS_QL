@@ -35,7 +35,6 @@ const MainContainer = () => {
 
   //Typewriter effect function for displaying the promptDisplayText
   function typewriterEffect(prompt, currentDigit = 0) {
-    console.log('prompt.slice(0, 9): ', prompt.slice(0, 9));
     if (currentDigit === 0 && prompt.slice(0, 9) === 'Greetings') {
       const newAudio = document.createElement('AUDIO');
       newAudio.src = morseSound;
